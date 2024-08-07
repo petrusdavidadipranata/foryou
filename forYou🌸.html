@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForYou🌸</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background: url('https://i.pinimg.com/564x/98/f5/2f/98f52f3b055832ad131cb448310b9b2c.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+        }
+        .gombalan {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .container {
+            width: 100%;
+            padding: 30px;
+        }
+        .content{
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px;
+            color: #333;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #ffc107;
+        }
+        .btnhidden{
+            display: none;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .btnhidden:hover{
+            background-color: #0056b3;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            position: fixed;
+            bottom: 0px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #4d4c4c;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <audio loop id="audio">
+        <source src="https://cdn.pixabay.com/download/audio/2024/08/07/audio_336c9e11eb.mp3?filename=itsyou-230444.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <button class="btn btn-start" onclick="start()">
+            Mulai
+        </button>
+        <div class="content" id="content">
+            <p id="pesan"></p>
+        </div>
+        <button class="btnhidden" onclick="balas()">Balas</button>
+        <script>
+            function balas(){
+                var nomor = "6283168740700" //Ganti no whatsapp kalian
+                var url = `https://api.whatsapp.com/send?phone=${nomor}`
+                window.open(url, "_blank")
+            }
+            function start(){
+
+                var audio = document.getElementById('audio')
+                var btn = document.querySelector('.btn-start')
+                btn.style.display = 'none'
+                audio.play()
+
+                var text = "Jika kelelahan melanda, biarkanlah aku menjadi tempat bagimu untuk beristirahat dan mendapatkan ketenangan. Bersama, kita akan menghadapi setiap tantangan dengan semangat yang tak kenal lelah dan kekuatan yang tumbuh bersama."
+                var index = 0
+                var speed = 50 // Kecepatan animasi (milidetik per huruf)
+                
+                function typeWriter() {
+                    var pesan = document.getElementById('pesan')
+                    if (index < text.length) {
+                        pesan.innerHTML += text.charAt(index)
+                        index++;
+                        setTimeout(typeWriter, speed)
+                    }else if(index === text.length){
+                        document.body.style.background = "url('https://i.pinimg.com/564x/f8/14/37/f81437ed007b1d479e11f16045c2ffce.jpg')";
+                        document.body.style.backgroundPosition = "center";
+                        document.body.style.backgroundSize = "cover";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                        var btnBalas = document.querySelector('.btnhidden')
+                        btnBalas.style.display = 'inline-block'
+                    }
+                }
+
+                function final(){
+                    var content = document.getElementById('content')
+                    content.style.backgroundColor = '#f9f9f986'
+                    typeWriter()
+
+                }
+                // Pertanyaan nama pertama kali membuka halaman
+                Swal.fire({
+                    title: 'Hai, siapa namamu?',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ok',
+                    cancelButtonText: 'Batal',
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return 'Isi nama dulu ya!'
+                        }
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var nama = result.value;
+                        Swal.fire({
+                            title: `Halo, ${nama}!`,
+                            text: `${nama} tau ga bedanya kamu sama Borobudur?`,
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Tau',
+                            cancelButtonText: 'Gatau'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire({
+                                    title: 'Yahh kok tau sih!',
+                                    text: 'Yaudah, lagi ya.',
+                                    icon: 'info',
+                                    confirmButtonText: 'Lagi!'
+                                }).then((result) => {
+                                    if (result.isConfirmed){
+                                        Swal.fire({
+                                            title: `Lagi ya ${nama}!`,
+                                            text: `${nama} tau ga sih? Aku tuh cape banget.`,
+                                            icon: 'question',
+                                            confirmButtonText: 'Cape kenapa?',
+                                            cancelButtonText: 'Bodo amat',
+                                            showCancelButton: true,
+                                        }).then((result) => {
+                                            if(result.isConfirmed){
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    html: `
+                                                        <div class="gombalan">
+                                                            <p style="font-size: 1.2em;">"Capek nahan kangen terus kekamu, hihihi"<br><hr>Btw aku ada pesan untuk kamu!</p>
+                                                        </div>`,
+                                                    confirmButtonText:'Buka Pesan ✉️'
+                                                }).then((result) => {
+                                                    if(result.isConfirmed){
+                                                        final()
+                                                    }
+                                                })
+                                            }else{
+                                                Swal.fire({
+                                                    title: 'Yahhhh!',
+                                                    text: 'Kayanya emang kamu susah digombalin si. Aku mau ngasih pesan aja buat kamu!',
+                                                    icon: 'info',
+                                                    confirmButtonText: 'Buka Pesan ✉️'
+                                                }).then((result) => {
+                                                    if(result.isConfirmed){
+                                                        final()
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    html: `
+                                        <div class="gombalan">
+                                            <p style="font-size: 1.2em;">"Kalau Borobudur candi, kalau kamu candu, hihihi"</p>
+                                        </div>
+                                    `,
+                                    icon: 'success',
+                                    confirmButtonText: 'Lagi!',
+                                    cancelButtonText: 'Cukup',
+                                }).then((result)=> {
+                                    if(result.isConfirmed){
+                                        Swal.fire({
+                                            title: `Lagi ya ${nama}!`,
+                                            text: `${nama} tau ga sih? Aku tuh cape banget.`,
+                                            icon: 'question',
+                                            confirmButtonText: 'Cape kenapa?',
+                                            cancelButtonText: 'Bodo amat',
+                                            showCancelButton: true,
+                                        }).then((result) => {
+                                            if(result.isConfirmed){
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    html: `
+                                                        <div class="gombalan">
+                                                            <p style="font-size: 1.2em;">"Capek nahan kangen terus kekamu, hihihi"<br><hr>Btw aku ada pesan untuk kamu!</p>
+                                                        </div>`,
+                                                    confirmButtonText:'Buka Pesan ✉️'
+                                                }).then((result) => {
+                                                    if(result.isConfirmed){
+                                                        final()
+                                                    }
+                                                })
+                                            }else{
+                                                Swal.fire({
+                                                    title: 'Yahhhh!',
+                                                    text: 'Kayanya emang kamu susah digombalin si. Aku mau ngasih pesan aja buat kamu!',
+                                                    icon: 'info',
+                                                    confirmButtonText: 'Buka Pesan ✉️'
+                                                }).then((result) => {
+                                                    if(result.isConfirmed){
+                                                        final()
+                                                    }
+                                                })
+                                            }
+                                        })
+                                        
+                                    }
+                                })
+                            }
+                        });
+                    }
+                });
+
+            }
+        </script>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 ForYou🌸 - From Pzdprnt</p>
+    </footer>
+</body>
+</html>
