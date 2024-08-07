@@ -106,7 +106,7 @@
                 btn.style.display = 'none'
                 audio.play()
 
-                var text = "Jika kelelahan melanda, biarkanlah aku menjadi tempat bagimu untuk beristirahat dan mendapatkan ketenangan. Bersama, kita akan menghadapi setiap tantangan dengan semangat yang tak kenal lelah dan kekuatan yang tumbuh bersama."
+                var text = "Jika kelelahan melanda, biarkanlah aku menjadi tempat bagimu untuk beristirahat dan mendapatkan ketenangan. Bersama, kita akan menghadapi setiap tantangan dengan semangat yang tak kenal lelah dan kekuatan yang tumbuh bersama." //ganti kata kata final
                 var index = 0
                 var speed = 50 // Kecepatan animasi (milidetik per huruf)
                 
@@ -149,7 +149,7 @@
                         var nama = result.value;
                         Swal.fire({
                             title: `Halo, ${nama}!`,
-                            text: `${nama} tau ga bedanya kamu sama Borobudur?`,
+                            text: `${nama} tau ga bedanya kamu sama Borobudur?`, \\gombalan 1
                             icon: 'question',
                             showCancelButton: true,
                             confirmButtonText: 'Tau',
@@ -165,7 +165,7 @@
                                     if (result.isConfirmed){
                                         Swal.fire({
                                             title: `Lagi ya ${nama}!`,
-                                            text: `${nama} tau ga sih? Aku tuh cape banget.`,
+                                            text: `${nama} tau ga sih? Aku tuh cape banget.`,  \\gombalan 2
                                             icon: 'question',
                                             confirmButtonText: 'Cape kenapa?',
                                             cancelButtonText: 'Bodo amat',
@@ -176,7 +176,7 @@
                                                     icon: 'success',
                                                     html: `
                                                         <div class="gombalan">
-                                                            <p style="font-size: 1.2em;">"Capek nahan kangen terus kekamu, hihihi"<br><hr>Btw aku ada pesan untuk kamu!</p>
+                                                            <p style="font-size: 1.2em;">"Capek nahan kangen terus kekamu, hihihi"<br><hr>Btw aku ada pesan untuk kamu!</p> \\result gombalan
                                                         </div>`,
                                                     confirmButtonText:'Buka Pesan ✉️'
                                                 }).then((result) => {
